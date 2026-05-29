@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>FabPulse — Brand Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --teal-primary: #1D9E75;
+    --teal-light: #5DCAA5;
+    --teal-dark: #0F6E56;
+    --teal-darker: #085041;
+    --teal-tint: #E1F5EE;
+    --teal-mid: #9FE1CB;
+    --ink: #0D1117;
+    --ink-2: #1A2030;
+    --ink-3: #4A6070;
+    --off-white: #F0F6FF;
+    --muted: #8899AA;
+    --red: #E24B4A;
+    --red-light: #FCEBEB;
+    --red-dark: #791F1F;
+    --amber: #EF9F27;
+    --surface: #F7F9FC;
+    --border: #E2E8F0;
+    --text-primary: #0D1117;
+    --text-secondary: #4A5568;
+    --text-muted: #8899AA;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 20px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #F4F6F9;
+    color: var(--text-primary);
+    line-height: 1.6;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--ink);
+    padding: 4rem 0 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .header-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--ink-2) 1px, transparent 1px),
+      linear-gradient(90deg, var(--ink-2) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: 0.5;
+  }
+  .header-pulse {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 60px;
+  }
+  .header-content {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--teal-dark);
+    color: var(--teal-mid);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+  }
+  .header-logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 1rem;
+  }
+  .logo-icon {
+    width: 56px; height: 56px;
+    background: var(--teal-primary);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .logo-wordmark {
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    line-height: 1;
+  }
+  .logo-wordmark .fab { color: var(--off-white); }
+  .logo-wordmark .pulse { color: var(--teal-light); }
+  .header-tagline {
+    font-size: 16px;
+    color: var(--muted);
+    letter-spacing: 0.3px;
+    margin-top: 0.5rem;
+  }
+  .header-meta {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+  .header-meta-item { font-size: 13px; color: var(--ink-3); }
+  .header-meta-item span { color: var(--teal-light); font-weight: 500; }
+
+  /* LAYOUT */
+  .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+  .section {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  .section-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--teal-primary);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* COLORS */
+  .color-grid { display: flex; gap: 12px; flex-wrap: wrap; }
+  .color-swatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .swatch-box {
+    width: 72px; height: 72px;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+  .swatch-name { font-size: 12px; font-weight: 600; color: var(--text-primary); }
+  .swatch-hex { font-size: 11px; color: var(--text-muted); font-family: monospace; }
+  .swatch-role { font-size: 10px; color: var(--teal-primary); font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+
+  /* TYPOGRAPHY */
+  .type-row { margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+  .type-row:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+  .type-meta { font-size: 11px; color: var(--text-muted); margin-top: 4px; font-family: monospace; }
+  .type-display { font-size: 36px; font-weight: 700; color: var(--text-primary); letter-spacing: -1px; line-height: 1.1; }
+  .type-heading { font-size: 22px; font-weight: 600; color: var(--text-primary); }
+  .type-body { font-size: 15px; font-weight: 400; color: var(--text-secondary); line-height: 1.7; max-width: 560px; }
+  .type-label { font-size: 12px; font-weight: 500; letter-spacing: 1.5px; color: var(--text-muted); text-transform: uppercase; }
+
+  /* LOGO VARIANTS */
+  .logo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .logo-variant {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .logo-variant.dark { background: var(--ink); border-color: var(--ink-2); }
+  .logo-variant-label { font-size: 11px; color: var(--text-muted); font-weight: 500; }
+  .logo-variant.dark .logo-variant-label { color: var(--ink-3); }
+
+  .logo-size { display: flex; align-items: center; gap: 8px; }
+  .li-sm { width: 28px; height: 28px; border-radius: 7px; background: var(--teal-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .li-md { width: 36px; height: 36px; border-radius: 9px; background: var(--teal-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .li-lg { width: 48px; height: 48px; border-radius: 12px; background: var(--teal-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+  /* ICON SIZES */
+  .icon-row { display: flex; align-items: flex-end; gap: 20px; flex-wrap: wrap; }
+  .icon-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .icon-box { background: var(--teal-primary); display: flex; align-items: center; justify-content: center; }
+  .icon-lbl { font-size: 11px; color: var(--text-muted); }
+
+  /* SPACING & RADIUS */
+  .radius-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .radius-box {
+    width: 64px; height: 64px;
+    background: var(--teal-tint);
+    border: 1.5px solid var(--teal-mid);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: var(--teal-darker); font-weight: 500;
+  }
+  .spacing-row { display: flex; align-items: flex-end; gap: 12px; flex-wrap: wrap; }
+  .spacing-box { background: var(--teal-tint); border: 1px solid var(--teal-mid); }
+
+  /* COMPONENTS */
+  .badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; }
+  .badge-live { background: var(--teal-tint); color: var(--teal-darker); border: 1px solid var(--teal-mid); }
+  .badge-dark { background: var(--teal-dark); color: var(--teal-mid); }
+  .badge-neutral { background: var(--surface); color: var(--text-secondary); border: 1px solid var(--border); }
+  .badge-alert { background: var(--red-light); color: var(--red-dark); border: 1px solid #F09595; }
+
+  .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .metric-card { background: var(--surface); border-radius: var(--radius-md); padding: 1rem; }
+  .metric-val { font-size: 26px; font-weight: 700; color: var(--teal-primary); line-height: 1; }
+  .metric-val.alert { color: var(--red); }
+  .metric-lbl { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+  /* VOICE */
+  .voice-row { display: flex; gap: 12px; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .voice-row:last-child { border-bottom: none; }
+  .voice-tag { font-size: 11px; font-weight: 600; color: var(--teal-primary); text-transform: uppercase; letter-spacing: 1px; min-width: 80px; }
+  .voice-example { font-size: 14px; color: var(--text-secondary); font-style: italic; }
+
+  /* DO / DON'T */
+  .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .rule-card { border-radius: var(--radius-md); padding: 1.25rem; }
+  .rule-card.do { border: 1.5px solid var(--teal-primary); background: #F0FBF7; }
+  .rule-card.dont { border: 1.5px dashed #E24B4A; background: #FFF5F5; }
+  .rule-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+  .rule-card.do .rule-label { color: var(--teal-dark); }
+  .rule-card.dont .rule-label { color: var(--red-dark); }
+  .rule-item { font-size: 13px; color: var(--text-secondary); margin-bottom: 6px; display: flex; gap: 6px; }
+  .rule-icon { font-weight: 700; }
+  .rule-card.do .rule-icon { color: var(--teal-primary); }
+  .rule-card.dont .rule-icon { color: var(--red); }
+
+  /* ELEVATOR PITCH */
+  .pitch-box {
+    background: var(--ink);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .pitch-quote {
+    font-size: 15px;
+    color: var(--off-white);
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+  }
+  .pitch-highlight { color: var(--teal-light); font-weight: 600; }
+  .pitch-tagline {
+    margin-top: 1.5rem;
+    font-size: 13px;
+    color: var(--ink-3);
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+  }
+  .pitch-accent {
+    position: absolute;
+    bottom: -20px; right: -20px;
+    width: 120px; height: 120px;
+    background: var(--teal-dark);
+    border-radius: 50%;
+    opacity: 0.3;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: var(--ink);
+    padding: 2rem;
+    text-align: center;
+    margin-top: 2rem;
+  }
+  .footer p { font-size: 12px; color: var(--ink-3); }
+  .footer .fp { color: var(--teal-light); font-weight: 600; }
+
+  @media (max-width: 600px) {
+    .logo-grid { grid-template-columns: 1fr; }
+    .metric-grid { grid-template-columns: 1fr 1fr; }
+    .rules-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-grid"></div>
+  <svg class="header-pulse" viewBox="0 0 900 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <polyline points="0,40 120,40 160,10 200,58 240,20 280,50 320,40 900,40" fill="none" stroke="#1D9E75" stroke-width="1.5" opacity="0.3"/>
+  </svg>
+  <div class="header-content">
+    <div class="header-badge">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#5DCAA5"/></svg>
+      Brand Identity Guide
+    </div>
+    <div class="header-logo">
+      <div class="logo-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+          <polyline points="2,12 5,12 7,6 9,18 11,9 13,15 15,12 22,12" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="logo-wordmark">
+        <span class="fab">Fab</span><span class="pulse">Pulse</span>
+      </div>
+    </div>
+    <div class="header-tagline">The Pulse of Precision Manufacturing</div>
+    <div class="header-meta">
+      <div class="header-meta-item">Version <span>1.0</span></div>
+      <div class="header-meta-item">Created <span>2026</span></div>
+      <div class="header-meta-item">Industry <span>Off-site Construction / Fabrication</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ELEVATOR PITCH -->
+  <div class="section">
+    <div class="section-title">Elevator Pitch</div>
+    <div class="pitch-box">
+      <div class="pitch-accent"></div>
+      <div class="pitch-quote">
+        FabPulse gives <span class="pitch-highlight">fabrication plants real-time visibility</span> into their production —
+        so they can <span class="pitch-highlight">cut waste, fix bottlenecks, and protect their margins</span>.
+      </div>
+      <div class="pitch-tagline">200 characters · For investors, clients, and demo days</div>
+    </div>
+    <div style="margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap">
+      <div style="flex:1;min-width:180px;background:var(--surface);border-radius:var(--radius-md);padding:1rem">
+        <div style="font-size:11px;font-weight:600;color:var(--teal-primary);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">Tagline</div>
+        <div style="font-size:14px;color:var(--text-secondary);font-style:italic">"The Pulse of Precision Manufacturing"</div>
+      </div>
+      <div style="flex:1;min-width:180px;background:var(--surface);border-radius:var(--radius-md);padding:1rem">
+        <div style="font-size:11px;font-weight:600;color:var(--teal-primary);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">Industry</div>
+        <div style="font-size:14px;color:var(--text-secondary)">Off-site construction — truss plants, wall panels, modular, steel framing</div>
+      </div>
+      <div style="flex:1;min-width:180px;background:var(--surface);border-radius:var(--radius-md);padding:1rem">
+        <div style="font-size:11px;font-weight:600;color:var(--teal-primary);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">Target</div>
+        <div style="font-size:14px;color:var(--text-secondary)">Plant owners · Production managers · Operations directors · CTO/IT</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLORS -->
+  <div class="section">
+    <div class="section-title">Color Palette</div>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="swatch-box" style="background:#1D9E75"></div>
+        <div class="swatch-name">Primary</div>
+        <div class="swatch-hex">#1D9E75</div>
+        <div class="swatch-role">Main brand</div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-box" style="background:#5DCAA5"></div>
+        <div class="swatch-name">Light teal</div>
+        <div class="swatch-hex">#5DCAA5</div>
+        <div class="swatch-role">Highlights</div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-box" style="background:#0F6E56"></div>
+        <div class="swatch-name">Dark teal</div>
+        <div class="swatch-hex">#0F6E56</div>
+        <div class="swatch-role">Hover / depth</div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-box" style="background:#085041"></div>
+        <div class="swatch-name">Darker teal</div>
+        <div class="swatch-hex">#085041</div>
+        <div class="swatch-role">Text on tint</div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-box" style="background:#E1F5EE;border:1px solid #9FE1CB"></div>
+        <div class="swatch-name">Tint</div>
+        <div class="swatch-hex">#E1F5EE</div>
+        <div class="swatch-role">Backgrounds</div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-box" style="background:#9FE1CB"></div>
+        <div class="swatch-name">Mid teal</div>
+        <div class="swatch-hex">#9FE1CB</div>
+        <div class="swatch-role">Borders / dividers</div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-box" style="background:#0D1117"></div>
+        <div class="swatch-name">Ink</div>
+        <div class="swatch-hex">#0D1117</div>
+        <div class="swatch-role">Dark bg / headers</div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-box" style="background:#F0F6FF;border:1px solid #E2E8F0"></div>
+        <div class="swatch-name">Off-white</div>
+        <div class="swatch-hex">#F0F6FF</div>
+        <div class="swatch-role">Text on dark</div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-box" style="background:#4A6070"></div>
+        <div class="swatch-name">Muted</div>
+        <div class="swatch-hex">#4A6070</div>
+        <div class="swatch-role">Secondary text</div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-box" style="background:#E24B4A"></div>
+        <div class="swatch-name">Alert red</div>
+        <div class="swatch-hex">#E24B4A</div>
+        <div class="swatch-role">Errors / alerts only</div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-box" style="background:#EF9F27"></div>
+        <div class="swatch-name">Amber</div>
+        <div class="swatch-hex">#EF9F27</div>
+        <div class="swatch-role">Warnings only</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPOGRAPHY -->
+  <div class="section">
+    <div class="section-title">Typography — Inter</div>
+    <div class="type-row">
+      <div class="type-display">Display — 700</div>
+      <div class="type-meta">font-size: 32–72px · font-weight: 700 · letter-spacing: -1px · Use: hero, logo, big numbers</div>
+    </div>
+    <div class="type-row">
+      <div class="type-heading">Heading — 600</div>
+      <div class="type-meta">font-size: 18–24px · font-weight: 600 · Use: section titles, card headers</div>
+    </div>
+    <div class="type-row">
+      <div class="type-body">Body — 400 · Clear, readable text for dashboards, descriptions, and UI copy. Line height 1.6–1.7 for readability in data-dense interfaces.</div>
+      <div class="type-meta">font-size: 14–16px · font-weight: 400 · line-height: 1.6 · Use: body copy, descriptions, UI text</div>
+    </div>
+    <div class="type-row">
+      <div class="type-label">Label — 500 · Uppercase tracking</div>
+      <div class="type-meta">font-size: 11–12px · font-weight: 500 · letter-spacing: 1.5px · text-transform: uppercase · Use: badges, section labels, data tags</div>
+    </div>
+    <div style="margin-top:1rem;background:var(--surface);border-radius:var(--radius-md);padding:1rem">
+      <div style="font-size:12px;font-weight:600;color:var(--teal-primary);margin-bottom:8px">Google Fonts import</div>
+      <code style="font-size:12px;color:var(--text-secondary);word-break:break-all">https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap</code>
+    </div>
+  </div>
+
+  <!-- LOGO -->
+  <div class="section">
+    <div class="section-title">Logo System</div>
+    <div class="logo-grid">
+      <div class="logo-variant">
+        <div class="logo-variant-label">Light background</div>
+        <div class="logo-size">
+          <div class="li-lg">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+              <polyline points="2,12 5,12 7,6 9,18 11,9 13,15 15,12 22,12" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div style="font-size:32px;font-weight:700;letter-spacing:-1px;line-height:1">
+            <span style="color:#0D1117">Fab</span><span style="color:#1D9E75">Pulse</span>
+          </div>
+        </div>
+        <div class="logo-size">
+          <div class="li-md">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <polyline points="2,12 5,12 7,6 9,18 11,9 13,15 15,12 22,12" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div style="font-size:22px;font-weight:700;letter-spacing:-0.5px">
+            <span style="color:#0D1117">Fab</span><span style="color:#1D9E75">Pulse</span>
+          </div>
+        </div>
+        <div class="logo-size">
+          <div class="li-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+              <polyline points="2,12 5,12 7,6 9,18 11,9 13,15 15,12 22,12" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div style="font-size:16px;font-weight:700;letter-spacing:-0.3px">
+            <span style="color:#0D1117">Fab</span><span style="color:#1D9E75">Pulse</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="logo-variant dark">
+        <div class="logo-variant-label">Dark background</div>
+        <div class="logo-size">
+          <div class="li-lg">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+              <polyline points="2,12 5,12 7,6 9,18 11,9 13,15 15,12 22,12" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div style="font-size:32px;font-weight:700;letter-spacing:-1px;line-height:1">
+            <span style="color:#F0F6FF">Fab</span><span style="color:#5DCAA5">Pulse</span>
+          </div>
+        </div>
+        <div class="logo-size">
+          <div class="li-md">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <polyline points="2,12 5,12 7,6 9,18 11,9 13,15 15,12 22,12" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div style="font-size:22px;font-weight:700;letter-spacing:-0.5px">
+            <span style="color:#F0F6FF">Fab</span><span style="color:#5DCAA5">Pulse</span>
+          </div>
+        </div>
+        <div class="logo-size">
+          <div class="li-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+              <polyline points="2,12 5,12 7,6 9,18 11,9 13,15 15,12 22,12" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div style="font-size:16px;font-weight:700;letter-spacing:-0.3px">
+            <span style="color:#F0F6FF">Fab</span><span style="color:#5DCAA5">Pulse</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ICON SIZES -->
+    <div style="margin-top:1.5rem">
+      <div style="font-size:12px;font-weight:500;color:var(--text-muted);margin-bottom:1rem">Icon — all sizes</div>
+      <div class="icon-row">
+        <div class="icon-item">
+          <div class="icon-box" style="width:80px;height:80px;border-radius:18px">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+              <polyline points="2,12 5,12 7,6 9,18 11,9 13,15 15,12 22,12" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="icon-lbl">80px · App store</div>
+        </div>
+        <div class="icon-item">
+          <div class="icon-box" style="width:56px;height:56px;border-radius:13px">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+              <polyline points="2,12 5,12 7,6 9,18 11,9 13,15 15,12 22,12" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="icon-lbl">56px · Header</div>
+        </div>
+        <div class="icon-item">
+          <div class="icon-box" style="width:40px;height:40px;border-radius:10px">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <polyline points="2,12 5,12 7,6 9,18 11,9 13,15 15,12 22,12" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="icon-lbl">40px · Nav</div>
+        </div>
+        <div class="icon-item">
+          <div class="icon-box" style="width:28px;height:28px;border-radius:7px">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <polyline points="2,12 5,12 7,6 9,18 11,9 13,15 15,12 22,12" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="icon-lbl">28px · Inline</div>
+        </div>
+        <div class="icon-item">
+          <div class="icon-box" style="width:20px;height:20px;border-radius:5px">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+              <polyline points="2,12 5,12 7,6 9,18 11,9 13,15 15,12 22,12" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="icon-lbl">20px · Favicon</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHAPE & SPACING -->
+  <div class="section">
+    <div class="section-title">Shape & Spacing</div>
+    <div style="margin-bottom:1.5rem">
+      <div style="font-size:12px;font-weight:500;color:var(--text-muted);margin-bottom:1rem">Border radius</div>
+      <div class="radius-row">
+        <div style="text-align:center">
+          <div class="radius-box" style="border-radius:4px">rx 4</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:6px">Subtle</div>
+        </div>
+        <div style="text-align:center">
+          <div class="radius-box" style="border-radius:8px">rx 8</div>
+          <div style="font-size:11px;color:var(--teal-primary);font-weight:600;margin-top:6px">Default ✓</div>
+        </div>
+        <div style="text-align:center">
+          <div class="radius-box" style="border-radius:12px">rx 12</div>
+          <div style="font-size:11px;color:var(--teal-primary);font-weight:600;margin-top:6px">Cards ✓</div>
+        </div>
+        <div style="text-align:center">
+          <div class="radius-box" style="border-radius:20px">rx 20</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:6px">Pills only</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:12px;font-weight:500;color:var(--text-muted);margin-bottom:1rem">Spacing scale (px)</div>
+      <div class="spacing-row">
+        <div style="text-align:center">
+          <div class="spacing-box" style="width:4px;height:40px"></div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:4px">4</div>
+        </div>
+        <div style="text-align:center">
+          <div class="spacing-box" style="width:8px;height:40px"></div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:4px">8</div>
+        </div>
+        <div style="text-align:center">
+          <div class="spacing-box" style="width:12px;height:40px"></div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:4px">12</div>
+        </div>
+        <div style="text-align:center">
+          <div class="spacing-box" style="width:16px;height:40px"></div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:4px">16</div>
+        </div>
+        <div style="text-align:center">
+          <div class="spacing-box" style="width:24px;height:40px"></div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:4px">24</div>
+        </div>
+        <div style="text-align:center">
+          <div class="spacing-box" style="width:32px;height:40px"></div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:4px">32</div>
+        </div>
+        <div style="text-align:center">
+          <div class="spacing-box" style="width:48px;height:40px"></div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:4px">48</div>
+        </div>
+        <div style="text-align:center">
+          <div class="spacing-box" style="width:64px;height:40px"></div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:4px">64</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPONENTS -->
+  <div class="section">
+    <div class="section-title">UI Components</div>
+    <div style="margin-bottom:1.5rem">
+      <div style="font-size:12px;font-weight:500;color:var(--text-muted);margin-bottom:10px">Badges / status</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+        <span class="badge badge-live">● Live</span>
+        <span class="badge badge-dark">Production</span>
+        <span class="badge badge-neutral">Paused</span>
+        <span class="badge badge-alert">⚠ Alert</span>
+        <span class="badge" style="background:#FFF8E6;color:#633806;border:1px solid #FAC775">Warning</span>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:12px;font-weight:500;color:var(--text-muted);margin-bottom:10px">Metric cards</div>
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="metric-val">94%</div>
+          <div class="metric-lbl">Efficiency</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val">1,284</div>
+          <div class="metric-lbl">Units today</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val">2.3m</div>
+          <div class="metric-lbl">Avg cycle</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val alert">3</div>
+          <div class="metric-lbl">Bottlenecks</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BRAND VOICE -->
+  <div class="section">
+    <div class="section-title">Brand Voice</div>
+    <div style="margin-bottom:1rem;font-size:13px;color:var(--text-muted)">Personality: Accesible e inteligente — claro, amigable pero profesional</div>
+    <div class="voice-row">
+      <div class="voice-tag">Clear</div>
+      <div class="voice-example">"Your plant ran at 94% efficiency today — 3 bottlenecks detected."</div>
+    </div>
+    <div class="voice-row">
+      <div class="voice-tag">Direct</div>
+      <div class="voice-example">"Cycle time up 12% since Tuesday. Station 4 is the culprit."</div>
+    </div>
+    <div class="voice-row">
+      <div class="voice-tag">Empathic</div>
+      <div class="voice-example">"We know production floors are noisy. FabPulse cuts through."</div>
+    </div>
+    <div class="voice-row">
+      <div class="voice-tag">Confident</div>
+      <div class="voice-example">"Real-time intelligence. No spreadsheets. No guesswork."</div>
+    </div>
+  </div>
+
+  <!-- DOS AND DON'TS -->
+  <div class="section">
+    <div class="section-title">Do's & Don'ts</div>
+    <div class="rules-grid">
+      <div class="rule-card do">
+        <div class="rule-label">✓ Do</div>
+        <div class="rule-item"><span class="rule-icon">+</span> Use Inter at 700 for headlines</div>
+        <div class="rule-item"><span class="rule-icon">+</span> Use teal only for primary actions and brand moments</div>
+        <div class="rule-item"><span class="rule-icon">+</span> Use red exclusively for alerts and errors</div>
+        <div class="rule-item"><span class="rule-icon">+</span> Keep icon on a teal rounded square</div>
+        <div class="rule-item"><span class="rule-icon">+</span> "Fab" dark / neutral, "Pulse" always teal</div>
+        <div class="rule-item"><span class="rule-icon">+</span> Dark background (#0D1117) for hero sections</div>
+      </div>
+      <div class="rule-card dont">
+        <div class="rule-label">✗ Don't</div>
+        <div class="rule-item"><span class="rule-icon">−</span> Use the logo without the icon mark</div>
+        <div class="rule-item"><span class="rule-icon">−</span> Use all-gray or unstyled wordmark</div>
+        <div class="rule-item"><span class="rule-icon">−</span> Add gradients or glow effects to the logo</div>
+        <div class="rule-item"><span class="rule-icon">−</span> Use more than 3 colors in one layout</div>
+        <div class="rule-item"><span class="rule-icon">−</span> Use red for anything other than errors</div>
+        <div class="rule-item"><span class="rule-icon">−</span> Use light weight (400) for the wordmark</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CSS VARIABLES -->
+  <div class="section">
+    <div class="section-title">CSS Variables — Quick Reference</div>
+    <pre style="background:#0D1117;color:#5DCAA5;padding:1.5rem;border-radius:var(--radius-md);font-size:12px;line-height:1.8;overflow-x:auto;white-space:pre-wrap">:root {
+  /* Brand */
+  --fp-primary:     #1D9E75;
+  --fp-light:       #5DCAA5;
+  --fp-dark:        #0F6E56;
+  --fp-darker:      #085041;
+  --fp-tint:        #E1F5EE;
+  --fp-mid:         #9FE1CB;
+
+  /* Neutrals */
+  --fp-ink:         #0D1117;
+  --fp-ink-2:       #1A2030;
+  --fp-ink-3:       #4A6070;
+  --fp-off-white:   #F0F6FF;
+  --fp-muted:       #8899AA;
+
+  /* Semantic */
+  --fp-alert:       #E24B4A;
+  --fp-alert-light: #FCEBEB;
+  --fp-warning:     #EF9F27;
+
+  /* Radius */
+  --fp-radius-sm:   6px;
+  --fp-radius-md:   10px;
+  --fp-radius-lg:   14px;
+
+  /* Typography */
+  --fp-font:        'Inter', sans-serif;
+}</pre>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p><span class="fp">FabPulse</span> Brand Guide v1.0 · The Pulse of Precision Manufacturing · Confidential</p>
+</div>
+
+</body>
+</html>

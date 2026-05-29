@@ -1,0 +1,25 @@
+{
+  "name": "fabpulse",
+  "version": "0.1.0",
+  "private": true,
+  "description": "FabPulse — Real-time operational intelligence for fabrication plants",
+  "workspaces": [
+    "apps/dashboard",
+    "apps/kiosk",
+    "packages/shared-types",
+    "packages/ui"
+  ],
+  "scripts": {
+    "dev:dashboard": "npm run dev --workspace=apps/dashboard",
+    "dev:kiosk": "npm run dev --workspace=apps/kiosk",
+    "build:dashboard": "npm run build --workspace=apps/dashboard",
+    "build:kiosk": "npm run build --workspace=apps/kiosk",
+    "build": "npm run build --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  }
+}
