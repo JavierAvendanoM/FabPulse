@@ -19,6 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      id-token: write
 
     steps:
       - name: Checkout
@@ -28,7 +29,8 @@ jobs:
         id: auth
         uses: google-github-actions/auth@v2
         with:
-          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+          workload_identity_provider: 'projects/978934723078/locations/global/workloadIdentityPools/github-pool/providers/github-provider'
+          service_account: 'github-actions@fabpulse-prod.iam.gserviceaccount.com'
 
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
@@ -45,11 +47,23 @@ jobs:
           docker push ${{ env.ARTIFACT_REGISTRY }}:latest
 
       - name: Deploy to Cloud Run
+        id: deploy
         uses: google-github-actions/deploy-cloudrun@v2
         with:
           service: ${{ env.SERVICE }}
           region: ${{ env.REGION }}
           image: ${{ env.ARTIFACT_REGISTRY }}:${{ github.sha }}
+          env_vars: |
+            ENVIRONMENT=production
+            GOOGLE_CLOUD_PROJECT=fabpulse-prod
+            VERTEX_AI_LOCATION=us-central1
+            GEMINI_MODEL=gemini-1.5-pro
+          secrets: |
+            SUPABASE_URL=supabase-url:latest
+            SUPABASE_ANON_KEY=supabase-anon-key:latest
+            SUPABASE_SERVICE_ROLE_KEY=supabase-service-role-key:latest
+            SUPABASE_JWT_SECRET=supabase-jwt-secret:latest
+            DATABASE_URL=database-url:latest
 
       - name: Show deployed URL
         run: echo "Deployed to ${{ steps.deploy.outputs.url }}"
