@@ -138,7 +138,18 @@ fabpulse/
 
 ## Current Priorities (update weekly)
 
-> **Week [X] focus:** [paste current week's tasks from SCHEDULE.md]
+> **Week 1 focus — Foundation (Days 1–7)**
+> - [x] Monorepo structure set up
+> - [x] Supabase project initialized (schema + RLS applied)
+> - [x] Core data models defined (Plant, Division, Station, Worker, Job, TaskLog, SimulationRun, Subscription)
+> - [x] Multi-tenant schema configured (plant_id scoping + RLS on all tables)
+> - [x] FastAPI backend skeleton running locally — /health ✅ /health/db ✅
+> - [x] CI/CD pipeline created (GitHub Actions → Cloud Run)
+> - [ ] Deploy FastAPI to Cloud Run — **NEXT: complete GCP setup**
+> - [ ] Initialize Firebase project
+> - [ ] Register domain fabpulse.io
+
+> **Stack note:** Python 3.14 (not 3.12). `google-cloud-aiplatform` commented out until Week 4 (pyiceberg/MSVC issue on Windows). Supabase connection uses pooler port 6543 + ssl=require.
 
 ---
 

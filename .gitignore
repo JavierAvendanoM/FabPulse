@@ -30,7 +30,7 @@ build/
 .DS_Store
 Thumbs.db
 
-# Google Cloud — exclude credential files only
+# Google Cloud ï¿½ exclude credential files only
 *-credentials.json
 *-service-account.json
 *credentials*.json
@@ -39,6 +39,6 @@ Thumbs.db
 # Docker
 *.tar
 
-# Logs
+# Logs (binary/runtime logs ignored, markdown session logs tracked)
 *.log
-logs/
+logs/*.log

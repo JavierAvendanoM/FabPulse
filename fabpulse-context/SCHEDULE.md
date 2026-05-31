@@ -18,13 +18,13 @@
 > Goal: Functional MVP deployed in production at your test plant. AI making real decisions. Google Cloud integrated.
 
 ### Week 1 (Days 1–7) — Foundation
-- [ ] Set up monorepo structure (see `ARCHITECTURE.md`)
-- [ ] Initialize Supabase project (PostgreSQL + Auth + Realtime)
+- [x] Set up monorepo structure (see `ARCHITECTURE.md`)
+- [x] Initialize Supabase project (PostgreSQL + Auth + Realtime)
 - [ ] Initialize Firebase project (Firestore for offline sync queue)
-- [ ] Deploy FastAPI backend skeleton to Cloud Run
-- [ ] Set up CI/CD pipeline (GitHub Actions → Cloud Run)
-- [ ] Define core data models: Plant, Division, Station, Job, Worker, Task, TimeLog
-- [ ] Configure multi-tenant schema (plant_id scoping on all tables)
+- [ ] Deploy FastAPI backend skeleton to Cloud Run ← **next session**
+- [x] Set up CI/CD pipeline (GitHub Actions → Cloud Run) — workflow created, pendiente primer deploy
+- [x] Define core data models: Plant, Division, Station, Job, Worker, TaskLog, SimulationRun, Subscription
+- [x] Configure multi-tenant schema (plant_id scoping on all tables)
 - [ ] Register domain: fabpulse.io
 - [ ] Set up Google Analytics + basic logging from day 1
 
