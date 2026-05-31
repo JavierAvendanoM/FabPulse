@@ -1,8 +1,8 @@
 import uuid
+import bcrypt
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
-from passlib.context import CryptContext
 
 from database import get_db
 from dependencies import get_current_plant
@@ -11,7 +11,14 @@ from models.worker import Worker
 from schemas.worker import WorkerCreate, WorkerUpdate, WorkerResponse, WorkerPinVerify
 
 router = APIRouter()
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+
+def _hash_pin(pin: str) -> str:
+    return bcrypt.hashpw(pin.encode(), bcrypt.gensalt()).decode()
+
+
+def _verify_pin(pin: str, pin_hash: str) -> bool:
+    return bcrypt.checkpw(pin.encode(), pin_hash.encode())
 
 
 @router.get("/", response_model=list[WorkerResponse])
@@ -37,7 +44,7 @@ async def create_worker(
         plant_id=plant.id,
         name=payload.name,
         employee_id=payload.employee_id,
-        pin_hash=pwd_context.hash(payload.pin) if payload.pin else None,
+        pin_hash=_hash_pin(payload.pin) if payload.pin else None,
     )
     db.add(worker)
     await db.commit()
@@ -61,7 +68,7 @@ async def update_worker(
     if payload.employee_id is not None:
         worker.employee_id = payload.employee_id
     if payload.pin is not None:
-        worker.pin_hash = pwd_context.hash(payload.pin)
+        worker.pin_hash = _hash_pin(payload.pin)
     if payload.is_active is not None:
         worker.is_active = payload.is_active
 
@@ -79,7 +86,7 @@ async def verify_worker_pin(
     if not worker or not worker.pin_hash:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Worker not found")
 
-    if not pwd_context.verify(payload.pin, worker.pin_hash):
+    if not _verify_pin(payload.pin, worker.pin_hash):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid PIN")
 
     return {"verified": True, "worker_id": str(worker.id), "name": worker.name}
