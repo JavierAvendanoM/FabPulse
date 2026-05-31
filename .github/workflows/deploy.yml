@@ -64,6 +64,7 @@ jobs:
             SUPABASE_SERVICE_ROLE_KEY=supabase-service-role-key:latest
             SUPABASE_JWT_SECRET=supabase-jwt-secret:latest
             DATABASE_URL=database-url:latest
+          flags: '--service-account=fabpulse-api@fabpulse-prod.iam.gserviceaccount.com'
 
       - name: Show deployed URL
         run: echo "Deployed to ${{ steps.deploy.outputs.url }}"
